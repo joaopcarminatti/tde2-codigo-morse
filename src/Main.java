@@ -16,6 +16,8 @@ public class Main {
 
             if (opcao.equals("1")) {
                 decodificar(teclado, arvore);
+            } else if (opcao.equals("2")) {
+                codificar(teclado, arvore);
             } else if (opcao.equals("0")) {
                 System.out.println("Até mais!");
             } else {
@@ -30,6 +32,7 @@ public class Main {
         System.out.println();
         System.out.println("===== CÓDIGO MORSE =====");
         System.out.println("1 - Decodificar (Morse -> texto)");
+        System.out.println("2 - Codificar (texto -> Morse)");
         System.out.println("0 - Sair");
         System.out.print("Escolha: ");
     }
@@ -43,4 +46,11 @@ public class Main {
         System.out.println("Resultado: " + arvore.decodificarMensagem(mensagem));
     }
 
+    private static void codificar(Scanner teclado, ArvoreMorse arvore) {
+        System.out.println("Digite o texto (letras A-Z e números 0-9):");
+        System.out.print("> ");
+        String texto = teclado.nextLine();
+
+        System.out.println("Resultado: " + arvore.codificarMensagem(texto));
+    }
 }

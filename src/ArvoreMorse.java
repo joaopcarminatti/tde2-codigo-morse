@@ -118,4 +118,57 @@ public class ArvoreMorse {
 
         return resultado.trim();
     }
+
+    // ===================== CODIFICAÇÃO =====================
+
+    // Transforma UMA letra (ex: 'A') em código (ex: ".-").
+    public String codificarLetra(char letra) {
+        String codigo = buscarCodigo(raiz, Character.toUpperCase(letra), "");
+
+        if (codigo == null) {
+            return "?"; // letra que não existe na árvore
+        }
+        return codigo;
+    }
+
+    // Procura a letra na árvore inteira, anotando o caminho percorrido:
+    // "." quando desce para a esquerda e "-" quando desce para a direita.
+    // Quando encontra a letra, o caminho anotado É o código Morse dela.
+    private String buscarCodigo(No no, char letra, String caminho) {
+        if (no == null) {
+            return null; // chegou no fim de um galho sem achar
+        }
+
+        if (no.temLetra() && no.getLetra() == letra) {
+            return caminho; // achou!
+        }
+
+        String resultadoEsquerda = buscarCodigo(no.getEsquerda(), letra, caminho + ".");
+        if (resultadoEsquerda != null) {
+            return resultadoEsquerda;
+        }
+
+        return buscarCodigo(no.getDireita(), letra, caminho + "-");
+    }
+
+    // Transforma um texto inteiro em Morse.
+    // Exemplo: "SOS OK" -> "... --- ... / --- -.-"
+    public String codificarMensagem(String texto) {
+        String resultado = "";
+        String[] palavras = texto.trim().split(" ");
+
+        for (String palavra : palavras) {
+            if (!palavra.isEmpty()) {
+                if (!resultado.isEmpty()) {
+                    resultado += "/ "; // separa uma palavra da outra
+                }
+
+                for (int i = 0; i < palavra.length(); i++) {
+                    resultado += codificarLetra(palavra.charAt(i)) + " ";
+                }
+            }
+        }
+
+        return resultado.trim();
+    }
 }
