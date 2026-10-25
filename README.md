@@ -2,11 +2,11 @@
 
 Resolução de Problemas Estruturados em Computação — PUCPR — Profa. Lisiane Reips
 
-**Equipe:** João Pedro Carminatti
-Felipe Braga 
-Gustavo Nery 
-Bento Barp
-Erick Misturi
+**Equipe:** João Pedro Carminatti,
+Felipe Braga, 
+Gustavo Nery, 
+Bento Barp,
+Erick Misturi.
 
 ## Como rodar
 
