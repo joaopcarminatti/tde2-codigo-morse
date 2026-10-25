@@ -4,9 +4,7 @@ Resolução de Problemas Estruturados em Computação — PUCPR — Profa. Lisia
 
 **Equipe:** João Pedro Carminatti,
 Felipe Braga, 
-Gustavo Nery, 
-Bento Barp,
-Erick Misturi.
+Gustavo Nery.
 
 ## Como rodar
 
