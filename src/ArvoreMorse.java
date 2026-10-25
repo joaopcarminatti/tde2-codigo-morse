@@ -171,4 +171,43 @@ public class ArvoreMorse {
 
         return resultado.trim();
     }
+
+    // ===================== IMPRESSÃO =====================
+
+    // Imprime a árvore DEITADA: a raiz fica na esquerda da tela.
+    // Gire a cabeça para a esquerda e ela vira uma árvore normal:
+    // os traços (direita) ficam em cima e os pontos (esquerda) embaixo.
+    public void imprimir() {
+        imprimirNo(raiz, 0);
+        System.out.println();
+        System.out.println("RAIZ = início | * = nó vazio | para cima = traço (-) | para baixo = ponto (.)");
+    }
+
+    // Ordem: primeiro o lado direito, depois o próprio nó, depois o lado esquerdo.
+    // O nível (profundidade) define quantos espaços vêm antes do nó.
+    private void imprimirNo(No no, int nivel) {
+        if (no == null) {
+            return;
+        }
+
+        imprimirNo(no.getDireita(), nivel + 1);
+
+        String espacos = "";
+        for (int i = 0; i < nivel; i++) {
+            espacos += "        ";
+        }
+        System.out.println(espacos + rotuloDoNo(no, nivel));
+
+        imprimirNo(no.getEsquerda(), nivel + 1);
+    }
+
+    private String rotuloDoNo(No no, int nivel) {
+        if (nivel == 0) {
+            return "RAIZ";
+        }
+        if (no.temLetra()) {
+            return "|-- " + no.getLetra();
+        }
+        return "|-- *";
+    }
 }

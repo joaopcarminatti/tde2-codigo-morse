@@ -18,6 +18,8 @@ public class Main {
                 decodificar(teclado, arvore);
             } else if (opcao.equals("2")) {
                 codificar(teclado, arvore);
+            } else if (opcao.equals("3")) {
+                arvore.imprimir();
             } else if (opcao.equals("0")) {
                 System.out.println("Até mais!");
             } else {
@@ -33,6 +35,7 @@ public class Main {
         System.out.println("===== CÓDIGO MORSE =====");
         System.out.println("1 - Decodificar (Morse -> texto)");
         System.out.println("2 - Codificar (texto -> Morse)");
+        System.out.println("3 - Imprimir a árvore");
         System.out.println("0 - Sair");
         System.out.print("Escolha: ");
     }
