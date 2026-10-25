@@ -68,4 +68,54 @@ public class ArvoreMorse {
 
         atual.setLetra(letra);
     }
+
+    // ===================== DECODIFICAÇÃO =====================
+
+    // Transforma UM código (ex: ".-") em letra (ex: 'A').
+    // Se o código não levar a nenhuma letra, devolve '?'.
+    public char decodificarLetra(String codigo) {
+        No atual = raiz;
+
+        for (int i = 0; i < codigo.length(); i++) {
+            char simbolo = codigo.charAt(i);
+
+            if (simbolo == '.') {
+                atual = atual.getEsquerda();
+            } else if (simbolo == '-') {
+                atual = atual.getDireita();
+            } else {
+                return '?'; // símbolo que não é ponto nem traço
+            }
+
+            if (atual == null) {
+                return '?'; // o caminho não existe na árvore
+            }
+        }
+
+        if (atual.temLetra()) {
+            return atual.getLetra();
+        }
+        return '?'; // parou num nó vazio
+    }
+
+    // Transforma uma mensagem inteira em texto.
+    // Letras separadas por espaço, palavras separadas por "/".
+    // Exemplo: "... --- ... / --- -.-" -> "SOS OK"
+    public String decodificarMensagem(String mensagem) {
+        String resultado = "";
+        String[] palavras = mensagem.split("/");
+
+        for (String palavra : palavras) {
+            String[] codigosDaPalavra = palavra.trim().split(" ");
+
+            for (String codigo : codigosDaPalavra) {
+                if (!codigo.isEmpty()) {
+                    resultado += decodificarLetra(codigo);
+                }
+            }
+            resultado += " ";
+        }
+
+        return resultado.trim();
+    }
 }

@@ -1,14 +1,46 @@
+import java.util.Scanner;
+
 /**
- * Programa principal.
- * Por enquanto só monta a árvore para conferir se a inserção funcionou.
+ * Programa principal: cria a árvore e mostra o menu no console.
  */
 public class Main {
 
     public static void main(String[] args) {
         ArvoreMorse arvore = new ArvoreMorse();
+        Scanner teclado = new Scanner(System.in);
+        String opcao = "";
 
-        System.out.println("Árvore montada!");
-        System.out.println("Esquerda da raiz (ponto): " + arvore.getRaiz().getEsquerda().getLetra());
-        System.out.println("Direita da raiz (traço): " + arvore.getRaiz().getDireita().getLetra());
+        while (!opcao.equals("0")) {
+            mostrarMenu();
+            opcao = teclado.nextLine().trim();
+
+            if (opcao.equals("1")) {
+                decodificar(teclado, arvore);
+            } else if (opcao.equals("0")) {
+                System.out.println("Até mais!");
+            } else {
+                System.out.println("Opção inválida.");
+            }
+        }
+
+        teclado.close();
     }
+
+    private static void mostrarMenu() {
+        System.out.println();
+        System.out.println("===== CÓDIGO MORSE =====");
+        System.out.println("1 - Decodificar (Morse -> texto)");
+        System.out.println("0 - Sair");
+        System.out.print("Escolha: ");
+    }
+
+    private static void decodificar(Scanner teclado, ArvoreMorse arvore) {
+        System.out.println("Digite o código (letras separadas por espaço, palavras por /):");
+        System.out.println("Exemplo: ... --- ... / --- -.-");
+        System.out.print("> ");
+        String mensagem = teclado.nextLine();
+
+        System.out.println("Resultado: " + arvore.decodificarMensagem(mensagem));
+    }
+
 }
